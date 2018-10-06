@@ -8,4 +8,4 @@
         gather_subset: "!config"
         register: cisco_facts
       debug:
-        msg: {{cisco_facts.stdout_lines}}
+        msg: "{{cisco_facts.ansible_net_version}}"
