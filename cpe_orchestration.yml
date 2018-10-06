@@ -7,7 +7,7 @@
       ios_facts:
         gather_subset: 
           - "!config"
-        register: cisco_facts
+      register: cisco_facts
     - name: Print Version
       debug:
         msg: "{{cisco_facts.stdout_lines}}"
