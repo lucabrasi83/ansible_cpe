@@ -9,4 +9,4 @@
         register: cisco_facts
     - name: Print Version
       debug:
-        msg: "{{cisco_facts.ansible_net_version}}"
+        msg: "{{cisco_facts.stdout_lines}}"
