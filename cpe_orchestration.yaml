@@ -1,0 +1,7 @@
+---
+- name: Gather Cisco IOS/IOSXE Inventory Facts
+  gather_facts: false
+  tasks:
+    - name: Collect Facts
+      ios_facts:
+        gather_subset: all
