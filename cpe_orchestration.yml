@@ -5,7 +5,8 @@
   tasks:
     - name: Collect Facts
       ios_facts:
-        gather_subset: "!config"
+        gather_subset: 
+          - "!config"
         register: cisco_facts
     - name: Print Version
       debug:
