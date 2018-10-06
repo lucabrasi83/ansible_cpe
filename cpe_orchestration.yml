@@ -5,4 +5,7 @@
   tasks:
     - name: Collect Facts
       ios_facts:
-        gather_subset: all
+        gather_subset: !config
+        register: cisco_facts
+      debug:
+        msg: {{cisco_facts.ansible_net_version}}
