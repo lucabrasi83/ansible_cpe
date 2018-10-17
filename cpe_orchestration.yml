@@ -5,7 +5,7 @@
   tasks:
     - name: Collect Facts
       debug:
-        msg: "{{ansible_facts.ansible_net_version}}"
+        msg: "{{ansible_net_version}}"
     #   ios_facts:
     #     gather_subset: 
     #       - "!config"
