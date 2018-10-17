@@ -7,7 +7,5 @@
       ios_facts:
         gather_subset: 
           - "!config"
-      register: cisco_facts
-    - name: Print Version
-      debug:
-        msg: "{{cisco_facts.ansible_facts.ansible_net_version}}"
+    - set_fact:
+       ios_version: "{{ansible_facts.ansible_net_version}}"
