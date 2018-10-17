@@ -7,5 +7,6 @@
       ios_facts:
         gather_subset: 
           - "!config"
+      register: facts
     - set_fact:
-       ios_version: "{{ansible_facts.ansible_net_version}}"
+       ios_version: "{{facts.ansible_facts.ansible_net_version}}"
