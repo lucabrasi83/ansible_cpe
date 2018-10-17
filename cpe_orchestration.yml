@@ -1,7 +1,7 @@
 ---
 - name: Gather Cisco IOS/IOSXE Inventory Facts
   gather_facts: false
-  hosts: CISCO:localhost
+  hosts: CISCO:AnutaStaging
   tasks:
   
     - name: Collect Facts
