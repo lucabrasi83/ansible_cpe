@@ -10,6 +10,12 @@
         gather_subset: 
           - "!config"
       register: facts
+
+    - name: Print JSON
+      when: inventory_hostname in groups['CISCO']
+      debug:
+              msg: "{{inventory_hostname}} Version {{ansible_net_version}}"
+
     - name: Check Device
       when: inventory_hostname not in groups['CISCO']
       uri:
@@ -24,8 +30,9 @@
       register: webpage
 
     - name: Print JSON
+      when: inventory_hostname not in groups['CISCO']
       debug:
-              msg: "{{(webpage.content |from_json)['controller:device']['id']}}"
+              msg: "{{(webpage.content |from_json)['controller:device']}}"
       
    
    
