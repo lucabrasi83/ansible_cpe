@@ -1,15 +1,15 @@
 ---
 - name: Gather Cisco IOS/IOSXE Inventory Facts
   gather_facts: false
-  hosts: all
+  hosts: localhost
   tasks:
   
-    - name: Collect Facts
-      when: inventory_hostname in groups['CISCO']
-      ios_facts:
-        gather_subset: 
-          - "!config"
-      register: facts
+    # - name: Collect Facts
+    #   when: inventory_hostname in groups['CISCO']
+    #   ios_facts:
+    #     gather_subset: 
+    #       - "!config"
+    #   register: facts
       
     - name: Check Device
       when: inventory_hostname not in groups['CISCO']
