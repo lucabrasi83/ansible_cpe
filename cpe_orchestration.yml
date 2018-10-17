@@ -4,9 +4,11 @@
   hosts: CISCO
   tasks:
     - name: Collect Facts
-      ios_facts:
-        gather_subset: 
-          - "!config"
-      register: facts
-    - set_fact:
-       ios_version: "{{facts.ansible_facts.ansible_net_version}}"
+      debug:
+        msg: "{{ansible_facts.ansible_net_version}}"
+    #   ios_facts:
+    #     gather_subset: 
+    #       - "!config"
+    #   register: facts
+    # - set_fact:
+    #    ios_version: "{{facts.ansible_facts.ansible_net_version}}"
