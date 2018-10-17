@@ -4,8 +4,13 @@
   hosts: CISCO
   tasks:
     - name: Collect Facts
+
       ios_facts:
         gather_subset: 
           - "!config"
       register: facts
+      
+    - name: Print Debugs
+      debug:
+        msg: "{{ansible_net_version}}"
    
