@@ -1,16 +1,27 @@
 ---
 - name: Gather Cisco IOS/IOSXE Inventory Facts
   gather_facts: false
-  hosts: CISCO
+  hosts: all
   tasks:
+  
     - name: Collect Facts
-
+      when: inventory_hostname in groups['CISCO']
       ios_facts:
         gather_subset: 
           - "!config"
       register: facts
       
-    - name: Print Debugs
-      debug:
-        msg: "{{ansible_net_version}}"
+    - name: Check Device
+      when: inventory_hostname not in groups['CISCO']
+      uri:
+        url:  https://anutaapi.asdlab.net/restconf/data/controller:devices/device=SSP-TH-BANGKOK-01-G-MPLS-R-1.json?fields=id;mgmt-ip-address
+        headers:
+            Content-Type: "application/json"
+            Authorization: "Basic c3NwYXBpOkV2MG9sdXQxb25DMA=="
+        client_key: undefined # not required. PEM formatted file that contains your private key to be used for SSL client authentication. If I(client_cert) contains both the certificate and key, this option is not required.
+        method: GET # not required. choices: GET;POST;PUT;HEAD;DELETE;OPTIONS;PATCH;TRACE;CONNECT;REFRESH. The HTTP method of the request or response. It MUST be uppercase.
+        status_code: 200 # not required. A list of valid, numeric, HTTP status codes that signifies success of the request.
+        return_content: yes # not required. Whether or not to return the body of the response as a "content" key in the dictionary result. If the reported Content-type is "application/json", then the JSON is additionally loaded into a key called C(json) in the dictionary results.
+        validate_certs: no # not required. If C(no), SSL certificates will not be validated.  This should only set to C(no) used on personally controlled sites using self-signed certificates.  Prior to 1.9.2 the code defaulted to C(no).
+        body_format: json
    
